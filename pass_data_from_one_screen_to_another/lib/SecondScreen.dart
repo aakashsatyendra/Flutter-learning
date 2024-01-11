@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SecondScreen extends StatelessWidget {
-  var nameFromHome;
+  final _nameFromHome;
 
-  SecondScreen(this.nameFromHome);
+  SecondScreen(this._nameFromHome);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class SecondScreen extends StatelessWidget {
           title: Text("Second Screen"),
         ),
         body: Center(
-          child: Text("Welcome $nameFromHome"),
+          child: Text("Welcome $_nameFromHome"),
         ));
   }
 }
