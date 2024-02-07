@@ -185,18 +185,37 @@ class _MyHomePageState extends State<MyHomePage> {
                             });
 
                             //unique date entries implementation
-                            // print(dbHelper!.doesDateExists(selectedDate));
 
-                            dbHelper!
-                                .insert(BmiDataModel(
-                                    date: selectedDate,
-                                    weight: iWeight,
-                                    feets: iFeet,
-                                    inches: iInch,
-                                    bmiValue: bmiValue))
-                                .then((value) => print("data inserted"))
-                                .onError((error, stackTrace) =>
-                                    print(error.toString()));
+                            void checkDate() async {
+                              print("checking here");
+                              var idAvailableDate =
+                                  await dbHelper!.doesDateExists(selectedDate);
+                              if (idAvailableDate != -1) {
+                                print("Data for this date already available");
+                                dbHelper!
+                                    .update(BmiDataModel(
+                                        id: idAvailableDate,
+                                        date: selectedDate,
+                                        weight: iWeight,
+                                        feets: iFeet,
+                                        inches: iInch,
+                                        bmiValue: bmiValue))
+                                    .then((value) => print("updated"));
+                              } else {
+                                dbHelper!
+                                    .insert(BmiDataModel(
+                                        date: selectedDate,
+                                        weight: iWeight,
+                                        feets: iFeet,
+                                        inches: iInch,
+                                        bmiValue: bmiValue))
+                                    .then((value) => print("data inserted"))
+                                    .onError((error, stackTrace) =>
+                                        print(error.toString()));
+                              }
+                            }
+
+                            checkDate();
                           } else {
                             setState(() {
                               bmiValue = "Please fill all the required fields";

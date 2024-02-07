@@ -35,16 +35,22 @@ class DBHelper {
 
   Future<List<BmiDataModel>> getBmiDataList() async {
     var dbClient = await db;
-    final List<Map<String, Object?>> queryResult =
-        await dbClient!.query('bmidata');
+    final List<Map<String, Object?>> queryResult = await dbClient!.query(
+      'bmidata',
+      orderBy: 'date',
+    );
     return queryResult.map((e) => BmiDataModel.fromMap(e)).toList();
   }
 
-  Future<bool> doesDateExists(String date) async {
+  Future<int> doesDateExists(String date) async {
     var dbClient = await db;
-    final List<Map<String, Object?>> queryResult =
-        await dbClient!.query('bmidata', where: 'date = ?', whereArgs: [date]);
-    return queryResult.isNotEmpty;
+    var result = await dbClient!
+        .rawQuery("select id from bmidata where date = '${date}'");
+    if (result.isNotEmpty) {
+      return (int.parse(result[0].toString().substring(5, 7)));
+    } else {
+      return -1;
+    }
   }
 
   Future<int> delete(int id) async {

@@ -42,7 +42,7 @@ class HistoryScreenState extends State<HistoryScreen> {
                     reverse: false,
                     itemBuilder: (context, index) {
                       return InkWell(
-                        onLongPress: () {
+                        onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
