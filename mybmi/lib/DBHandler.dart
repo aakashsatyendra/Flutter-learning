@@ -37,7 +37,7 @@ class DBHelper {
     var dbClient = await db;
     final List<Map<String, Object?>> queryResult = await dbClient!.query(
       'bmidata',
-      orderBy: 'date',
+      orderBy: 'date DESC',
     );
     return queryResult.map((e) => BmiDataModel.fromMap(e)).toList();
   }

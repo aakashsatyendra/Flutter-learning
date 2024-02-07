@@ -123,12 +123,17 @@ class _MyHomePageState extends State<MyHomePage> {
                               lastDate: DateTime(2025));
 
                           if (datePicked != null) {
-                            selectedDate = datePicked.day.toString() +
-                                " / " +
-                                datePicked.month.toString() +
-                                " / " +
-                                datePicked.year.toString();
-                            setState(() {});
+                            String month = datePicked.month.toString();
+                            String day = datePicked.day.toString();
+                            String year = datePicked.year.toString();
+
+                            setState(() {
+                              selectedDate = year +
+                                  " / " +
+                                  "${int.parse(month) < 10 ? '0' + month : month}" +
+                                  " / " +
+                                  "${int.parse(day) < 10 ? '0' + day : day}";
+                            });
                           }
                         },
                         child: Text(selectedDate)),
