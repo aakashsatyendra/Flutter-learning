@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Text(
                   "Welcome",
                   style: TextStyle(
-                      color: resColor,
+                      color: Colors.green,
                       fontWeight: FontWeight.bold,
                       fontSize: 20),
                 ),
@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Text(
                   "Calculate Your BMI",
                   style: TextStyle(
-                      color: resColor,
+                      color: Colors.green,
                       fontWeight: FontWeight.bold,
                       fontSize: 20),
                 ),
@@ -78,11 +78,26 @@ class _MyHomePageState extends State<MyHomePage> {
                 TextField(
                   controller: wtController,
                   keyboardType: TextInputType.number,
+                  cursorColor: Colors.green,
+                  style: TextStyle(
+                      color: Colors.green,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
                   decoration: InputDecoration(
-                      label: Text("Enter your weight in kgs"),
+                      label: Text(
+                        "Enter your weight in kgs",
+                        style: TextStyle(
+                            color: Colors.green, fontWeight: FontWeight.bold),
+                      ),
                       border: new OutlineInputBorder(
-                          borderSide: new BorderSide(color: Colors.teal)),
-                      prefixIcon: Icon(Icons.line_weight)),
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: new BorderSide(
+                            color: Colors.teal,
+                          )),
+                      prefixIcon: Icon(
+                        Icons.line_weight,
+                        color: Colors.green,
+                      )),
                 ),
                 SizedBox(
                   height: 21,
@@ -90,11 +105,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 TextField(
                   controller: ftController,
                   keyboardType: TextInputType.number,
+                  cursorColor: Colors.green,
+                  style: TextStyle(
+                      color: Colors.green,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
                   decoration: InputDecoration(
-                      label: Text("Enter your height (in feets)"),
+                      label: Text(
+                        "Enter your height (in feets)",
+                        style: TextStyle(
+                            color: Colors.green, fontWeight: FontWeight.bold),
+                      ),
                       border: new OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
                           borderSide: new BorderSide(color: Colors.teal)),
-                      prefixIcon: Icon(Icons.line_weight)),
+                      prefixIcon: Icon(
+                        Icons.line_weight,
+                        color: Colors.green,
+                      )),
                 ),
                 SizedBox(
                   height: 21,
@@ -102,11 +130,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 TextField(
                   controller: inController,
                   keyboardType: TextInputType.number,
+                  cursorColor: Colors.green,
+                  style: TextStyle(
+                      color: Colors.green,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
                   decoration: InputDecoration(
-                      label: Text("Enter Your height (in inches)"),
+                      label: Text(
+                        "Enter Your height (in inches)",
+                        style: TextStyle(
+                            color: Colors.green, fontWeight: FontWeight.bold),
+                      ),
                       border: new OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
                           borderSide: new BorderSide(color: Colors.teal)),
-                      prefixIcon: Icon(Icons.line_weight)),
+                      prefixIcon: Icon(
+                        Icons.line_weight,
+                        color: Colors.green,
+                      )),
                 ),
                 SizedBox(
                   height: 21,
@@ -136,7 +177,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             });
                           }
                         },
-                        child: Text(selectedDate)),
+                        child: Text(selectedDate,
+                            style: TextStyle(
+                                color: Colors.green,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold))),
                     ElevatedButton(
                         onPressed: () {
                           FocusScope.of(context).unfocus();
@@ -206,6 +251,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                         inches: iInch,
                                         bmiValue: bmiValue))
                                     .then((value) => print("updated"));
+                                setState(() {
+                                  bmiDataList = dbHelper!.getBmiDataList();
+                                });
                               } else {
                                 dbHelper!
                                     .insert(BmiDataModel(
@@ -227,7 +275,13 @@ class _MyHomePageState extends State<MyHomePage> {
                             });
                           }
                         },
-                        child: Text("Calculate")),
+                        child: Text(
+                          "Calculate",
+                          style: TextStyle(
+                              color: Colors.green,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        )),
                   ],
                 ),
                 SizedBox(
@@ -260,7 +314,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Icon(
                         Icons.history,
                         size: 50,
-                        color: Color.fromARGB(255, 2, 97, 5),
+                        color: Colors.green,
                       ),
                       onTap: () {
                         Navigator.push(
@@ -273,7 +327,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Icon(
                         Icons.info,
                         size: 50,
-                        color: Color.fromARGB(255, 2, 97, 5),
+                        color: Colors.green,
                       ),
                       onTap: () {
                         Navigator.push(
